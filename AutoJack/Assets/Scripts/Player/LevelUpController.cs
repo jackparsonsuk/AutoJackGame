@@ -119,18 +119,19 @@ public class LevelUpController : MonoBehaviour
 
     void dogUpgradeButtonCall()
     {
-        powerUpController.UpgradeDogLevel();
+
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.dog);
 
         clearUpgradeButtons();
     }
     void trebuchetUpgradeButtonCall()
     {
-        powerUpController.UpgradeTrebuchetLevel();
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.trebuchet);
         clearUpgradeButtons();
     }
     void shieldUpgradeButtonCall()
     {
-        powerUpController.UpgradeShieldLevel();
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.shield);
         clearUpgradeButtons();
     }
     void clearUpgradeButtons()
