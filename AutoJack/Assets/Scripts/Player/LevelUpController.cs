@@ -87,7 +87,7 @@ public class LevelUpController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
 
-            var upgradeChoice = UnityEngine.Random.Range(0,3);
+            var upgradeChoice = UnityEngine.Random.Range(0,5);
             //Popup upgrade option buttons
             var button = Instantiate(upgradeButton, buttonSpawnPoints[i].transform.position, Quaternion.identity, canvas.transform);
 
@@ -106,6 +106,16 @@ public class LevelUpController : MonoBehaviour
             {
                 button.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade shield";
                 button.GetComponent<Button>().onClick.AddListener(shieldUpgradeButtonCall);
+            }
+            else if (upgradeChoice == 3)
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade player health";
+                button.GetComponent<Button>().onClick.AddListener(playerHealthUpgradeButtonCall);
+            }
+            else if (upgradeChoice == 4)
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade player speed";
+                button.GetComponent<Button>().onClick.AddListener(playerSpeedUpgradeButtonCall);
             }
 
             upgradeButtons.Add(button);
@@ -136,6 +146,16 @@ public class LevelUpController : MonoBehaviour
     void shieldUpgradeButtonCall()
     {
         powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.shield);
+        clearUpgradeButtons();
+    }
+    void playerHealthUpgradeButtonCall()
+    {
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.playerHealth);
+        clearUpgradeButtons();
+    }
+    void playerSpeedUpgradeButtonCall()
+    {
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.playerSpeed);
         clearUpgradeButtons();
     }
     void clearUpgradeButtons()

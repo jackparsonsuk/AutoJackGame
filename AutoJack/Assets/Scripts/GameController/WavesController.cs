@@ -86,8 +86,4 @@ public class WavesController : MonoBehaviour
 
     }
 
-    public void updateHealthText(string newHealthText)
-    {
-        HealthText.GetComponent<TextMeshProUGUI>().text = newHealthText;
-    }
 }
