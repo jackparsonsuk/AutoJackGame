@@ -16,10 +16,15 @@ public class LevelUpController : MonoBehaviour
     public PowerUpController powerUpController;
     private List<GameObject> upgradeButtons = new List<GameObject>();
     public List<GameObject> buttonSpawnPoints = new List<GameObject>();
+    public GameObject curXPTextPrefab;
+    public GameObject xpThresholdTextPrefab;
+    public GameObject levelTextPrefab;
+
 
     private void Start()
     {
         IncreaseLevel();
+        refreshUIElements();
     }
     private void Update()
     {
@@ -41,8 +46,15 @@ public class LevelUpController : MonoBehaviour
                 IncreaseXPThreshold();
             }
         }
+        refreshUIElements();
     }
 
+    private void refreshUIElements()
+    {
+        curXPTextPrefab.GetComponent<TextMeshProUGUI>().text = "XP: " + currentXP.ToString();
+        xpThresholdTextPrefab.GetComponent<TextMeshProUGUI>().text = "Next level: " + xpThreshold.ToString();
+        levelTextPrefab.GetComponent<TextMeshProUGUI>().text = "Current Level: " + currentLevel.ToString();
+    }
 
     private void IncreaseLevel()
     {
