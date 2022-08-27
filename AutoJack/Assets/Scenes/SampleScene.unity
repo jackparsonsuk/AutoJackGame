@@ -565,7 +565,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146050799}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10faf056d1f13284aad630a786973848, type: 3}
   m_Name: 
@@ -581,19 +581,35 @@ MonoBehaviour:
     - name: 0
       numberOfEnemies: 20
     - name: 1
-      numberOfEnemies: 1
+      numberOfEnemies: 2
+    - name: 2
+      numberOfEnemies: 15
     timeToNextWave: 10
   - waveNumber: 0
     enemies:
     - name: 1
-      numberOfEnemies: 50
+      numberOfEnemies: 5
+    - name: 0
+      numberOfEnemies: 20
+    - name: 2
+      numberOfEnemies: 10
     timeToNextWave: 10
+  - waveNumber: 0
+    enemies:
+    - name: 1
+      numberOfEnemies: 10
+    - name: 0
+      numberOfEnemies: 20
+    - name: 2
+      numberOfEnemies: 50
+    timeToNextWave: 15
   ZombiePrefab: {fileID: 3776451435363472835, guid: 9cb1c80dd67a67f4c88cfa8a10d48471, type: 3}
   TrollPrefab: {fileID: 6567224067006758339, guid: 9efee3bf7498e6940a9098a867b18ca0, type: 3}
   RatPrefab: {fileID: 752912896883862431, guid: d72f2adf6b5600542b31eab1a8a50783, type: 3}
   player: {fileID: 1738902120}
   waveCooldown: 0
   HealthText: {fileID: 239314117}
+  cam: {fileID: 0}
 --- !u!1 &174404851
 GameObject:
   m_ObjectHideFlags: 0
