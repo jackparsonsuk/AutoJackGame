@@ -90,26 +90,7 @@ public class PowerUpController : MonoBehaviour
 
 
 
-    #region ShootPowerUps
-    //private void Shoot(float modifer)
-    //{
-    //    GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-    //    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-    //    rb.AddForce(firePoint.up * bulletForce * modifer, ForceMode2D.Impulse);
-    //}
-    //private void multiShoot(float modifer)
-    //{
 
-    //    for (int i = 0; i < pu1NumberOfBullets; i++)
-    //    {
-    //        Vector3 posModifer = new Vector3(0, i, 0);
-    //        GameObject bullet = Instantiate(bulletPrefab, firePoint.position + posModifer, firePoint.rotation);
-    //        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-    //        rb.AddForce(firePoint.up * bulletForce * modifer, ForceMode2D.Impulse);
-    //    }
-
-    //}
-    #endregion
 
 
     #region DogPowerUps

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f;
     public float curHealth;
     public GameObject gameController;
+    public GameObject DeathText;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void GameOver()
     {
-        throw new NotImplementedException();
+        DeathText.SetActive(true);
     }
     private void updateHealthGUI()
     {
