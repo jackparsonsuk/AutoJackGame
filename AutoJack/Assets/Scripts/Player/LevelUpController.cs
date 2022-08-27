@@ -17,6 +17,10 @@ public class LevelUpController : MonoBehaviour
     private List<GameObject> upgradeButtons = new List<GameObject>();
     public List<GameObject> buttonSpawnPoints = new List<GameObject>();
 
+    private void Start()
+    {
+        IncreaseLevel();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
