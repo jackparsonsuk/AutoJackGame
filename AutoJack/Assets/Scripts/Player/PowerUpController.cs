@@ -51,6 +51,12 @@ public class PowerUpController : MonoBehaviour
     private int shieldDamage;
     public GameObject shieldPrefab;
 
+    [Header("Player health upgrade")]
+    public int PlayerHealthUpgradeLevel = 0;
+
+    [Header("Player Speed upgrade")]
+    public int PlayerSpeedUpgradeLevel = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -298,11 +304,58 @@ public class PowerUpController : MonoBehaviour
     }
     #endregion
 
+    #region Player health Powerup
+    public void SetPlayerHealthStats()
+    {
+        switch(PlayerHealthUpgradeLevel){
+            case 1:
+                transform.gameObject.GetComponent<PlayerHealth>().increaseMaxHealth(10);
+                break;
+            case 2:
+                transform.gameObject.GetComponent<PlayerHealth>().increaseMaxHealth(20);
+                break;
+            case 3:
+                transform.gameObject.GetComponent<PlayerHealth>().increaseMaxHealth(50);
+                break;
+            case 4:
+                transform.gameObject.GetComponent<PlayerHealth>().increaseMaxHealth(100);
+                break;
+            case 5:
+                transform.gameObject.GetComponent<PlayerHealth>().increaseMaxHealth(200);
+                break;
+        }
+    }
+    #endregion
+    #region Player speed Powerup
+    public void SetPlayerSpeedStats()
+    {
+        switch (PlayerSpeedUpgradeLevel)
+        {
+            case 1:
+                transform.gameObject.GetComponent<Move>().IncreasePlayerSpeed(3);
+                break;
+            case 2:
+                transform.gameObject.GetComponent<Move>().IncreasePlayerSpeed(6);
+                break;
+            case 3:
+                transform.gameObject.GetComponent<Move>().IncreasePlayerSpeed(10);
+                break;
+            case 4:
+                transform.gameObject.GetComponent<Move>().IncreasePlayerSpeed(20);
+                break;
+            case 5:
+                transform.gameObject.GetComponent<Move>().IncreasePlayerSpeed(50);
+                break;
+        }
+    }
+    #endregion
     public enum PowerUpType
     {
         dog,
         trebuchet,
-        shield
+        shield,
+        playerHealth,
+        playerSpeed
     }
     public void UpgradePowerUp(PowerUpType type)
     {
@@ -322,6 +375,14 @@ public class PowerUpController : MonoBehaviour
                 ShieldEnabled = true;
                 shieldLevel++;
                 SetShieldStats();
+                break;
+            case PowerUpType.playerHealth:
+                PlayerHealthUpgradeLevel++;
+                SetPlayerHealthStats();
+                break;
+            case PowerUpType.playerSpeed:
+                PlayerSpeedUpgradeLevel++;
+                SetPlayerSpeedStats();
                 break;
             default:
                 break;

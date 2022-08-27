@@ -13,6 +13,8 @@ public class WavesController : MonoBehaviour
     public GameObject player;
     public float waveCooldown;
     public GameObject HealthText;
+    public Camera cam;
+
     public enum myEnum // your custom enumeration
     {
         Zombie,
@@ -36,6 +38,7 @@ public class WavesController : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        cam = Camera.main;
         StartCoroutine(Cooldown());
     }
 
@@ -58,10 +61,12 @@ public class WavesController : MonoBehaviour
         }
         for (int i = 0; i < numberOfEnemies; i++)
         {
+            float height = 2f * cam.orthographicSize;
+            float width = height * cam.aspect;
             Vector3 spawnPos = UnityEngine.Random.insideUnitCircle * 5;
 
 
-            Instantiate(selectedEnemyPrefab, player.transform.position += spawnPos, Quaternion.identity);
+            Instantiate(selectedEnemyPrefab, new Vector3(cam.transform.position.x + UnityEngine.Random.Range(-width, width), 3, cam.transform.position.z + height + UnityEngine.Random.Range(10, 30)), Quaternion.identity);
         }
     }
 
@@ -81,8 +86,4 @@ public class WavesController : MonoBehaviour
 
     }
 
-    public void updateHealthText(string newHealthText)
-    {
-        HealthText.GetComponent<TextMeshProUGUI>().text = newHealthText;
-    }
 }

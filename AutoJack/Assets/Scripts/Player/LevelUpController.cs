@@ -16,10 +16,15 @@ public class LevelUpController : MonoBehaviour
     public PowerUpController powerUpController;
     private List<GameObject> upgradeButtons = new List<GameObject>();
     public List<GameObject> buttonSpawnPoints = new List<GameObject>();
+    public GameObject curXPTextPrefab;
+    public GameObject xpThresholdTextPrefab;
+    public GameObject levelTextPrefab;
+
 
     private void Start()
     {
         IncreaseLevel();
+        refreshUIElements();
     }
     private void Update()
     {
@@ -41,8 +46,15 @@ public class LevelUpController : MonoBehaviour
                 IncreaseXPThreshold();
             }
         }
+        refreshUIElements();
     }
 
+    private void refreshUIElements()
+    {
+        curXPTextPrefab.GetComponent<TextMeshProUGUI>().text = "XP: " + currentXP.ToString();
+        xpThresholdTextPrefab.GetComponent<TextMeshProUGUI>().text = "Next level: " + xpThreshold.ToString();
+        levelTextPrefab.GetComponent<TextMeshProUGUI>().text = "Current Level: " + currentLevel.ToString();
+    }
 
     private void IncreaseLevel()
     {
@@ -87,7 +99,7 @@ public class LevelUpController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
 
-            var upgradeChoice = UnityEngine.Random.Range(0,3);
+            var upgradeChoice = UnityEngine.Random.Range(0,5);
             //Popup upgrade option buttons
             var button = Instantiate(upgradeButton, buttonSpawnPoints[i].transform.position, Quaternion.identity, canvas.transform);
 
@@ -106,6 +118,16 @@ public class LevelUpController : MonoBehaviour
             {
                 button.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade shield";
                 button.GetComponent<Button>().onClick.AddListener(shieldUpgradeButtonCall);
+            }
+            else if (upgradeChoice == 3)
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade player health";
+                button.GetComponent<Button>().onClick.AddListener(playerHealthUpgradeButtonCall);
+            }
+            else if (upgradeChoice == 4)
+            {
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade player speed";
+                button.GetComponent<Button>().onClick.AddListener(playerSpeedUpgradeButtonCall);
             }
 
             upgradeButtons.Add(button);
@@ -136,6 +158,16 @@ public class LevelUpController : MonoBehaviour
     void shieldUpgradeButtonCall()
     {
         powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.shield);
+        clearUpgradeButtons();
+    }
+    void playerHealthUpgradeButtonCall()
+    {
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.playerHealth);
+        clearUpgradeButtons();
+    }
+    void playerSpeedUpgradeButtonCall()
+    {
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.playerSpeed);
         clearUpgradeButtons();
     }
     void clearUpgradeButtons()

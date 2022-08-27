@@ -21,6 +21,10 @@ public class Move : MonoBehaviour
     {
         
     }
+    public void IncreasePlayerSpeed(int increaseAmount)
+    {
+        moveSpeed += increaseAmount;
+    }
 
     // Update is called once per frame
     void Update()

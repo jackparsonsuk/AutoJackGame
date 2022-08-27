@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public float curHealth;
     public GameObject gameController;
     public GameObject DeathText;
+    public GameObject HealthText;
+    public GameObject MaxHealthText;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,18 +26,24 @@ public class PlayerHealth : MonoBehaviour
         updateHealthGUI();
         if (curHealth <= 0)
         {
+            curHealth = 0;
             Debug.Log("GAME OVER");
             GameOver();
         }
     }
-    public void heal(int amount, GameObject healer)
+    public void heal(int amount)
     {
-        Debug.Log("HEALED BY " + healer.name + " FOR " + amount);
         curHealth += amount;
         if (curHealth >= maxHealth)
         {
             curHealth = maxHealth;
         }
+        updateHealthGUI();
+    }
+    public void increaseMaxHealth(int increaseAmount)
+    {
+        maxHealth+= increaseAmount;
+        heal(increaseAmount);
         updateHealthGUI();
     }
     public void IncreaseMaxHealth(int amount)
@@ -48,7 +57,8 @@ public class PlayerHealth : MonoBehaviour
     }
     private void updateHealthGUI()
     {
-        gameController.GetComponent<WavesController>().updateHealthText(curHealth.ToString());
+        HealthText.GetComponent<TextMeshProUGUI>().text = curHealth.ToString();
+        MaxHealthText.GetComponent<TextMeshProUGUI>().text = maxHealth.ToString();
     }
 
     // Update is called once per frame
