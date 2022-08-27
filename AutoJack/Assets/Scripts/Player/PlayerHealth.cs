@@ -26,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         updateHealthGUI();
         if (curHealth <= 0)
         {
+            curHealth = 0;
             Debug.Log("GAME OVER");
             GameOver();
         }
