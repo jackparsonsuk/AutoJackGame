@@ -60,27 +60,6 @@ public class PowerUpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            UpgradeDogLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            UpgradeTrebuchetLevel();
-        }
-        if (pu1Enabled && Input.GetButtonDown("Fire1"))
-        {
-            multiShoot(1);
-        }
-        else if (pu2Enabled && Input.GetButtonDown("Fire1"))
-        {
-            Shoot(pu2FireRate);
-        }
-        else if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot(1);
-        }
-
         if (dogsEnabled)
         {
             if (curNumberOfDogs < maxDogs)
@@ -111,46 +90,14 @@ public class PowerUpController : MonoBehaviour
 
 
 
-    #region ShootPowerUps
-    private void Shoot(float modifer)
-    {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce * modifer, ForceMode2D.Impulse);
-    }
-    private void multiShoot(float modifer)
-    {
 
-        for (int i = 0; i < pu1NumberOfBullets; i++)
-        {
-            Vector3 posModifer = new Vector3(0, i, 0);
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position + posModifer, firePoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firePoint.up * bulletForce * modifer, ForceMode2D.Impulse);
-        }
-
-    }
-    #endregion
 
 
     #region DogPowerUps
-    public void EnableDogs()
-    {
-        dogsEnabled = true;
-        SetDogStats();
-    }
+
     public void DisableDogs()
     {
         dogsEnabled = false;
-    }
-    public void UpgradeDogLevel()
-    {
-        if (!dogsEnabled)
-        {
-            EnableDogs();
-        }
-        dogsLevel++;
-        SetDogStats();
     }
     public void DownGradeDogLevel()
     {
@@ -223,24 +170,10 @@ public class PowerUpController : MonoBehaviour
 
     #endregion
     #region TrebuchetPowerUp
-    public void EnableTrebuchet()
-    {
-        TrebuchetEnabled = true;
-        SetTrebuchetStats();
-    }
+
     public void DisableTrebuchet()
     {
         TrebuchetEnabled = false;
-    }
-    public void UpgradeTrebuchetLevel()
-    {
-        if (!TrebuchetEnabled)
-        {
-            EnableTrebuchet();
-        }
-
-        trebuchetLevel++;
-        SetTrebuchetStats();
     }
     public void DownGradeTrebuchetLevel()
     {
@@ -324,20 +257,6 @@ public class PowerUpController : MonoBehaviour
         var shield = Instantiate(shieldPrefab, transform.position, Quaternion.identity, transform);
         Shields.Add(shield);
     }
-    public void EnableShield()
-    {
-        ShieldEnabled = true;
-        SetShieldStats();
-    }
-    public void UpgradeShieldLevel()
-    {
-        if (!ShieldEnabled)
-        {
-            EnableShield();
-        }
-        shieldLevel++;
-        SetShieldStats();
-    }
 
     private void SetShieldStats()
     {
@@ -378,4 +297,34 @@ public class PowerUpController : MonoBehaviour
         }
     }
     #endregion
+
+    public enum PowerUpType
+    {
+        dog,
+        trebuchet,
+        shield
+    }
+    public void UpgradePowerUp(PowerUpType type)
+    {
+        switch (type)
+        {
+            case PowerUpType.dog:
+                dogsEnabled = true;
+                dogsLevel++;
+                SetDogStats();
+                break;
+            case PowerUpType.trebuchet:
+                TrebuchetEnabled = true;
+                trebuchetLevel++;
+                SetTrebuchetStats();
+                break;
+            case PowerUpType.shield:
+                ShieldEnabled = true;
+                shieldLevel++;
+                SetShieldStats();
+                break;
+            default:
+                break;
+        }
+    }
 }

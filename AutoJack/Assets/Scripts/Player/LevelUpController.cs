@@ -17,6 +17,10 @@ public class LevelUpController : MonoBehaviour
     private List<GameObject> upgradeButtons = new List<GameObject>();
     public List<GameObject> buttonSpawnPoints = new List<GameObject>();
 
+    private void Start()
+    {
+        IncreaseLevel();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
@@ -119,18 +123,19 @@ public class LevelUpController : MonoBehaviour
 
     void dogUpgradeButtonCall()
     {
-        powerUpController.UpgradeDogLevel();
+
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.dog);
 
         clearUpgradeButtons();
     }
     void trebuchetUpgradeButtonCall()
     {
-        powerUpController.UpgradeTrebuchetLevel();
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.trebuchet);
         clearUpgradeButtons();
     }
     void shieldUpgradeButtonCall()
     {
-        powerUpController.UpgradeShieldLevel();
+        powerUpController.UpgradePowerUp(PowerUpController.PowerUpType.shield);
         clearUpgradeButtons();
     }
     void clearUpgradeButtons()
