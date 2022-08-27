@@ -11,6 +11,9 @@ public class EnemyHealth : MonoBehaviour
     public float xpWorth = 10;
     public GameObject xpPrefab;
     public float xpDropChance = 5;
+    public GameObject healPrefab;
+    public float healDropChance = 1;
+    public int healWorth = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,11 @@ public class EnemyHealth : MonoBehaviour
         showFloatingText(amount);
         if (curHealth <= 0)
         {
-            spawnXP();
+            bool spawnedXP = spawnXP();
+            if (!spawnedXP)
+            {
+                spawnHealth();
+            }
             Destroy(gameObject);
         }
     }
@@ -55,14 +62,35 @@ public class EnemyHealth : MonoBehaviour
     {
         xpDropChance = dropChance;
     }
-    private void spawnXP()
+    public void setHealWorth(float healAmount)
+    {
+        healAmount = healWorth;
+    }
+    public void setHealDropChance(float dropChance)
+    {
+        healDropChance = dropChance;
+    }
+    private bool spawnXP()
     {
 
         var xpDropChanceValue = UnityEngine.Random.Range(0, 10);
         if (xpDropChanceValue <= xpDropChance)
         {
             var xpDrop = Instantiate(xpPrefab, transform.position, Quaternion.identity);
-            xpDrop.GetComponent<XPDropScript>().SetXPValue(100);
+            xpDrop.GetComponent<XPDropScript>().SetXPValue(xpWorth);
+            return true;
+        }
+        return false;
+
+    }
+    private void spawnHealth()
+    {
+        var healDropChanceValue = UnityEngine.Random.Range(0, 10);
+        if (healDropChanceValue <= healDropChance)
+        {
+            var healDrop = Instantiate(healPrefab, transform.position, Quaternion.identity);
+            healDrop.GetComponent<HealthDropScript>().SetHealValue(healWorth);
+
         }
 
     }

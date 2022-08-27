@@ -243,6 +243,9 @@ MonoBehaviour:
   xpWorth: 10
   xpPrefab: {fileID: 6850942250898043228, guid: 0203b65bc0af2874a9857bd9753b6015, type: 3}
   xpDropChance: 5
+  healPrefab: {fileID: 8659318333757384701, guid: 2f2a9c0bd76034245b833c249032e80c, type: 3}
+  healDropChance: 1
+  healWorth: 10
 --- !u!114 &4677622573381889161
 MonoBehaviour:
   m_ObjectHideFlags: 0
