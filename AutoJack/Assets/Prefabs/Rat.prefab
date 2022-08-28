@@ -156,7 +156,7 @@ MonoBehaviour:
   maxHealth: 1
   curHealth: 0
   floatingHealthPrefab: {fileID: 3983455617703947158, guid: 516cc8a340be7dc418504342a70f5004, type: 3}
-  xpWorth: 10
+  xpWorth: 25
   xpPrefab: {fileID: 6850942250898043228, guid: 0203b65bc0af2874a9857bd9753b6015, type: 3}
   xpDropChance: 1
   healPrefab: {fileID: 8659318333757384701, guid: 2f2a9c0bd76034245b833c249032e80c, type: 3}
