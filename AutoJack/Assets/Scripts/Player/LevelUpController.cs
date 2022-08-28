@@ -92,7 +92,25 @@ public class LevelUpController : MonoBehaviour
                 xpThreshold = 3000;
                 break;
             case 6:
-                xpThreshold = 5000;
+                xpThreshold = 6000;
+                break;
+            case 7:
+                xpThreshold = 9000;
+                break;
+            case 8:
+                xpThreshold = 12000;
+                break;
+            case 9:
+                xpThreshold = 15000;
+                break;
+            case 10:
+                xpThreshold = 18000;
+                break;
+            case 11:
+                xpThreshold = 21000;
+                break;
+            case 12:
+                xpThreshold = 24000;
                 break;
             default:
                 break;
