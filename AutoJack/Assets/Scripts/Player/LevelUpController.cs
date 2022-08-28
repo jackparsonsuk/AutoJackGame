@@ -19,7 +19,7 @@ public class LevelUpController : MonoBehaviour
     public GameObject curXPTextPrefab;
     public GameObject xpThresholdTextPrefab;
     public GameObject levelTextPrefab;
-
+    public int timesToShowPowerUpOptions = 0;
 
     private void Start()
     {
@@ -60,7 +60,16 @@ public class LevelUpController : MonoBehaviour
     {
         currentLevel++;
         //Give powerUp options
-        showPowerUpOptions();
+        if (timesToShowPowerUpOptions == 0)
+        {
+            timesToShowPowerUpOptions++;
+            showPowerUpOptions();
+        }
+        else
+        {
+            timesToShowPowerUpOptions++;
+        }
+
     }
 
     private void IncreaseXPThreshold()
@@ -138,11 +147,6 @@ public class LevelUpController : MonoBehaviour
 
         //Unfreeze screen
     }
-    void setupButton()
-    {
-        Debug.Log("BUTTON PRESSED");
-    }
-
     void dogUpgradeButtonCall()
     {
 
@@ -172,10 +176,19 @@ public class LevelUpController : MonoBehaviour
     }
     void clearUpgradeButtons()
     {
+        Debug.Log("clear power ups");
+
+
         foreach (var item in upgradeButtons)
         {
             Destroy(item);
         }
         upgradeButtons.Clear();
+        timesToShowPowerUpOptions--;
+        if (timesToShowPowerUpOptions > 0)
+        {
+            Debug.Log("yeet");
+            showPowerUpOptions();
+        }
     }
 }
