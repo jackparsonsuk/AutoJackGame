@@ -9,7 +9,7 @@ public class TrebuchetMove : MonoBehaviour
     private float turnSpeed = 3.5f;
     private Rigidbody2D rb;
     Vector2 lookDir;
-    private GameObject target;
+    public GameObject target;
     private int TrebuchetLifetime =1;
     private GameObject player;
     // Start is called before the first frame update

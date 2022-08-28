@@ -19,7 +19,7 @@ public class LevelUpController : MonoBehaviour
     public GameObject curXPTextPrefab;
     public GameObject xpThresholdTextPrefab;
     public GameObject levelTextPrefab;
-
+    public int timesToShowPowerUpOptions = 0;
 
     private void Start()
     {
@@ -60,7 +60,16 @@ public class LevelUpController : MonoBehaviour
     {
         currentLevel++;
         //Give powerUp options
-        showPowerUpOptions();
+        if (timesToShowPowerUpOptions == 0)
+        {
+            timesToShowPowerUpOptions++;
+            showPowerUpOptions();
+        }
+        else
+        {
+            timesToShowPowerUpOptions++;
+        }
+
     }
 
     private void IncreaseXPThreshold()
@@ -83,7 +92,25 @@ public class LevelUpController : MonoBehaviour
                 xpThreshold = 3000;
                 break;
             case 6:
-                xpThreshold = 5000;
+                xpThreshold = 6000;
+                break;
+            case 7:
+                xpThreshold = 9000;
+                break;
+            case 8:
+                xpThreshold = 12000;
+                break;
+            case 9:
+                xpThreshold = 15000;
+                break;
+            case 10:
+                xpThreshold = 18000;
+                break;
+            case 11:
+                xpThreshold = 21000;
+                break;
+            case 12:
+                xpThreshold = 24000;
                 break;
             default:
                 break;
@@ -138,11 +165,6 @@ public class LevelUpController : MonoBehaviour
 
         //Unfreeze screen
     }
-    void setupButton()
-    {
-        Debug.Log("BUTTON PRESSED");
-    }
-
     void dogUpgradeButtonCall()
     {
 
@@ -172,10 +194,19 @@ public class LevelUpController : MonoBehaviour
     }
     void clearUpgradeButtons()
     {
+        Debug.Log("clear power ups");
+
+
         foreach (var item in upgradeButtons)
         {
             Destroy(item);
         }
         upgradeButtons.Clear();
+        timesToShowPowerUpOptions--;
+        if (timesToShowPowerUpOptions > 0)
+        {
+            Debug.Log("yeet");
+            showPowerUpOptions();
+        }
     }
 }

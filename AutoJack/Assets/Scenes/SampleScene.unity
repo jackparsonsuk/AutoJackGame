@@ -4538,6 +4538,7 @@ MonoBehaviour:
   curXPTextPrefab: {fileID: 1150347434}
   xpThresholdTextPrefab: {fileID: 208899863}
   levelTextPrefab: {fileID: 515320862}
+  timesToShowPowerUpOptions: 0
 --- !u!114 &1738902130
 MonoBehaviour:
   m_ObjectHideFlags: 0

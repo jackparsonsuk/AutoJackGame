@@ -20,7 +20,8 @@ public class TrebuchetAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CanAttack )
+        var haveTarget= transform.gameObject.GetComponent<TrebuchetMove>().target != null;
+        if (CanAttack && haveTarget)
         {
             var bullet = Instantiate(BulletPrefab, attackPoint.transform.position, transform.rotation);
             bullet.GetComponent<Bullet>().SetDamage(damage);
