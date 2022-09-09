@@ -121,7 +121,7 @@ public class LevelUpController : MonoBehaviour
     private void showPowerUpOptions()
     {
         //Freeze screen
-
+        FreezeGame(true);
         //Genearate 3 upgrade options
         for (int i = 0; i < 3; i++)
         {
@@ -163,8 +163,22 @@ public class LevelUpController : MonoBehaviour
         }
 
 
-        //Unfreeze screen
+
     }
+
+    private void FreezeGame(bool frozen)
+    {
+        if (frozen)
+        {
+            Time.timeScale = 0.001f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
+    }
+
     void dogUpgradeButtonCall()
     {
 
@@ -208,5 +222,7 @@ public class LevelUpController : MonoBehaviour
             Debug.Log("yeet");
             showPowerUpOptions();
         }
+        //Unfreeze screen
+        FreezeGame(false);
     }
 }
