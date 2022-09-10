@@ -16,14 +16,13 @@ public class LevelUpController : MonoBehaviour
     public PowerUpController powerUpController;
     private List<GameObject> upgradeButtons = new List<GameObject>();
     public List<GameObject> buttonSpawnPoints = new List<GameObject>();
-    public GameObject curXPTextPrefab;
-    public GameObject xpThresholdTextPrefab;
     public GameObject levelTextPrefab;
+    public Slider XPSlider;
     public int timesToShowPowerUpOptions = 0;
 
     private void Start()
     {
-        IncreaseLevel();
+        addXP(101);
         refreshUIElements();
     }
     private void Update()
@@ -51,8 +50,15 @@ public class LevelUpController : MonoBehaviour
 
     private void refreshUIElements()
     {
-        curXPTextPrefab.GetComponent<TextMeshProUGUI>().text = "XP: " + currentXP.ToString();
-        xpThresholdTextPrefab.GetComponent<TextMeshProUGUI>().text = "Next level: " + xpThreshold.ToString();
+        var lastXPThreshold = CalculateThreshold(currentLevel - 1);
+        XPSlider.value = ((currentXP-lastXPThreshold) / (xpThreshold-lastXPThreshold));
+        print("lvl" + currentLevel);
+        print("curxp" + currentXP);
+        print("xpthreshold" + xpThreshold);
+        print("xp-lastxpthreshold" + (currentXP - lastXPThreshold));
+        print("xpthreshold-lastxpthreshold" + (xpThreshold - lastXPThreshold));
+        print("lastxpthreshold" + lastXPThreshold);
+
         levelTextPrefab.GetComponent<TextMeshProUGUI>().text = "Current Level: " + currentLevel.ToString();
     }
 
@@ -74,46 +80,38 @@ public class LevelUpController : MonoBehaviour
 
     private void IncreaseXPThreshold()
     {
-        switch (currentLevel)
+        xpThreshold = CalculateThreshold(currentLevel);
+    }
+    public int CalculateThreshold(int level)
+    {
+        switch (level)
         {
             case 1:
-                xpThreshold = 100;
-                break;
+                return 100;
             case 2:
-                xpThreshold = 250;
-                break;
+                return 250;
             case 3:
-                xpThreshold = 600;
-                break;
+                return 600;
             case 4:
-                xpThreshold = 1500;
-                break;
+                return 1500;
             case 5:
-                xpThreshold = 3000;
-                break;
+                return 3000;
             case 6:
-                xpThreshold = 6000;
-                break;
+                return 6000;
             case 7:
-                xpThreshold = 9000;
-                break;
+                return 9000;
             case 8:
-                xpThreshold = 12000;
-                break;
+                return 12000;
             case 9:
-                xpThreshold = 15000;
-                break;
+                return 15000;
             case 10:
-                xpThreshold = 18000;
-                break;
+                return 18000;
             case 11:
-                xpThreshold = 21000;
-                break;
+                return 21000;
             case 12:
-                xpThreshold = 24000;
-                break;
+                return 24000;
             default:
-                break;
+                return 0;
         }
     }
 
@@ -121,7 +119,7 @@ public class LevelUpController : MonoBehaviour
     private void showPowerUpOptions()
     {
         //Freeze screen
-
+        FreezeGame(true);
         //Genearate 3 upgrade options
         for (int i = 0; i < 3; i++)
         {
@@ -163,8 +161,22 @@ public class LevelUpController : MonoBehaviour
         }
 
 
-        //Unfreeze screen
+
     }
+
+    private void FreezeGame(bool frozen)
+    {
+        if (frozen)
+        {
+            Time.timeScale = 0.001f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
+    }
+
     void dogUpgradeButtonCall()
     {
 
@@ -208,5 +220,7 @@ public class LevelUpController : MonoBehaviour
             Debug.Log("yeet");
             showPowerUpOptions();
         }
+        //Unfreeze screen
+        FreezeGame(false);
     }
 }
