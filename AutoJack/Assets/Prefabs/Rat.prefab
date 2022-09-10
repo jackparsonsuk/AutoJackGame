@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 752912896883862429}
   - component: {fileID: 752912896883862430}
   - component: {fileID: 752912896883862428}
-  - component: {fileID: 752912896883862435}
   - component: {fileID: 752912896883862434}
   - component: {fileID: 3823400833711442126}
   - component: {fileID: 9146815424007934677}
+  - component: {fileID: 9035316856162312924}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Enemy
@@ -105,20 +105,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &752912896883862435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752912896883862431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7289a1046d4cba445a335e45e7192279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPos: {fileID: 0}
-  zombieSpeed: 0.65
 --- !u!50 &752912896883862434
 Rigidbody2D:
   serializedVersion: 4
@@ -176,3 +162,18 @@ MonoBehaviour:
   AttackSpeed: 5
   AttackDamage: 2
   CanAttack: 1
+--- !u!114 &9035316856162312924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752912896883862431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cf11b768b5c3047a04ed93d50c3fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPos: {fileID: 0}
+  zombieSpeed: 5
+  JumpFreequency: 1
