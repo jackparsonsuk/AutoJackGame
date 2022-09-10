@@ -52,14 +52,8 @@ public class LevelUpController : MonoBehaviour
     {
         var lastXPThreshold = CalculateThreshold(currentLevel - 1);
         XPSlider.value = ((currentXP-lastXPThreshold) / (xpThreshold-lastXPThreshold));
-        print("lvl" + currentLevel);
-        print("curxp" + currentXP);
-        print("xpthreshold" + xpThreshold);
-        print("xp-lastxpthreshold" + (currentXP - lastXPThreshold));
-        print("xpthreshold-lastxpthreshold" + (xpThreshold - lastXPThreshold));
-        print("lastxpthreshold" + lastXPThreshold);
 
-        levelTextPrefab.GetComponent<TextMeshProUGUI>().text = "Current Level: " + currentLevel.ToString();
+        levelTextPrefab.GetComponent<TextMeshProUGUI>().text = "Current Level: " + (currentLevel-1).ToString();
     }
 
     private void IncreaseLevel()

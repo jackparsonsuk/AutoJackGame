@@ -710,7 +710,7 @@ MonoBehaviour:
   - waveNumber: 0
     enemies:
     - name: 2
-      numberOfEnemies: 100
+      numberOfEnemies: 1
     - name: 1
       numberOfEnemies: 2
     timeToNextWave: 30

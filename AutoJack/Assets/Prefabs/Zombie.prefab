@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
-  zombieSpeed: 0.25
+  zombieSpeed: 1
 --- !u!50 &3776451435363472894
 Rigidbody2D:
   serializedVersion: 4
