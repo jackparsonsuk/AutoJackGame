@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,8 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public float curHealth;
     public GameObject gameController;
     public GameObject DeathText;
-    public GameObject HealthText;
-    public GameObject MaxHealthText;
+    public GameObject HealthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,6 @@ public class PlayerHealth : MonoBehaviour
     }
     public void damage(int amount, GameObject attacker)
     {
-        Debug.Log("DAMAGED BY " + attacker.name + " FOR " + amount);
         curHealth -= amount;
         updateHealthGUI();
         if (curHealth <= 0)
@@ -46,10 +45,6 @@ public class PlayerHealth : MonoBehaviour
         heal(increaseAmount);
         updateHealthGUI();
     }
-    public void IncreaseMaxHealth(int amount)
-    {
-        maxHealth += amount;
-    }
 
     private void GameOver()
     {
@@ -57,13 +52,8 @@ public class PlayerHealth : MonoBehaviour
     }
     private void updateHealthGUI()
     {
-        HealthText.GetComponent<TextMeshProUGUI>().text = curHealth.ToString();
-        MaxHealthText.GetComponent<TextMeshProUGUI>().text = maxHealth.ToString();
+        HealthBar.gameObject.GetComponent<Slider>().value = (curHealth /maxHealth);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
