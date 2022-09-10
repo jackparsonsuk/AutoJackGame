@@ -175,5 +175,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
-  zombieSpeed: 5
+  zombieSpeed: 3
   JumpFreequency: 1

@@ -701,7 +701,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146050799}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10faf056d1f13284aad630a786973848, type: 3}
   m_Name: 
@@ -710,7 +710,7 @@ MonoBehaviour:
   - waveNumber: 0
     enemies:
     - name: 2
-      numberOfEnemies: 1
+      numberOfEnemies: 100
     - name: 1
       numberOfEnemies: 2
     timeToNextWave: 30
@@ -3397,6 +3397,10 @@ PrefabInstance:
       propertyPath: rockPrefab
       value: 
       objectReference: {fileID: 507508621591230489, guid: 5c4c065c833b4d24a8a3047803721b8e, type: 3}
+    - target: {fileID: 6903074529578405661, guid: feb06dff84ac84842aaa05bc3dae79ed, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6903074529578405664, guid: feb06dff84ac84842aaa05bc3dae79ed, type: 3}
       propertyPath: m_Name
       value: Ogre
