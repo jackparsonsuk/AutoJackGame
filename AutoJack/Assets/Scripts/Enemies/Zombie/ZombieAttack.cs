@@ -12,7 +12,7 @@ public class ZombieAttack : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player") && CanAttack)
         {
-            collision.transform.GetComponent<PlayerHealth>().damage(AttackDamage, transform.gameObject);
+            collision.transform.GetComponent<PlayerHealth>().damage(AttackDamage);
             StartCoroutine(Cooldown());
         }
     }

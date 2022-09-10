@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
         curHealth = maxHealth;
         updateHealthGUI();
     }
-    public void damage(int amount, GameObject attacker)
+    public void damage(int amount)
     {
         curHealth -= amount;
         updateHealthGUI();
