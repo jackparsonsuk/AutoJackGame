@@ -62,8 +62,18 @@ public class LevelUpController : MonoBehaviour
         //Give powerUp options
         if (timesToShowPowerUpOptions == 0)
         {
-            timesToShowPowerUpOptions++;
-            showPowerUpOptions();
+            if (currentLevel-1 == 1)
+            {
+                print("level 2");
+                showPowerUpOptions(true);
+            }
+            else
+            {
+                print("other level");
+                timesToShowPowerUpOptions++;
+                showPowerUpOptions(false);
+            }
+
         }
         else
         {
@@ -110,15 +120,23 @@ public class LevelUpController : MonoBehaviour
     }
 
 
-    private void showPowerUpOptions()
+    private void showPowerUpOptions(bool allAttackingChoices)
     {
         //Freeze screen
         FreezeGame(true);
         //Genearate 3 upgrade options
         for (int i = 0; i < 3; i++)
         {
+            var upgradeChoice = 0;
+            if (allAttackingChoices)
+            {
+                upgradeChoice = UnityEngine.Random.Range(0, 3);
+            }
+            else
+            {
+                upgradeChoice = UnityEngine.Random.Range(0, 5);
+            }
 
-            var upgradeChoice = UnityEngine.Random.Range(0,5);
             //Popup upgrade option buttons
             var button = Instantiate(upgradeButton, buttonSpawnPoints[i].transform.position, Quaternion.identity, canvas.transform);
 
@@ -211,8 +229,7 @@ public class LevelUpController : MonoBehaviour
         timesToShowPowerUpOptions--;
         if (timesToShowPowerUpOptions > 0)
         {
-            Debug.Log("yeet");
-            showPowerUpOptions();
+            showPowerUpOptions(false);
         }
         //Unfreeze screen
         FreezeGame(false);
